@@ -100,44 +100,44 @@ namespace Game_in_Csharp
                 Console.WriteLine(row);
             }
 
-            int playerRow = 3;
-            int playerCol = 2;
+
+            Player player = new Player();
 
             // funckja poruszanienia gracza po mapie
             while (true)
             {
                 // wyświetlenie gracza na mapie
-                Display.WriteAt(playerCol, playerRow, "@");
+                Display.WriteAt(player.x, player.y, player.avatar);
 
                 // odczytanie klawisza
                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
 
                 // usunięcie gracza z poprzedniej pozycji
-                string currentRow = level[playerRow];
-                char currentCell = currentRow[playerCol];
-                Display.WriteAt(playerCol, playerRow, currentCell);
+                string currentRow = level[player.y];
+                char currentCell = currentRow[player.x];
+                Display.WriteAt(player.x, player.y, currentCell);
 
                 // zmienna przechowująca nową pozycję gracza
-                int targetColumn = playerCol;
-                int targetRow = playerRow;
+                int targetColumn = player.x;
+                int targetRow = player.y;
 
                 // przypisanie klawiszy odpowiedzialnych za poruszanie się gracza oraz aktualizacja jego pozycji
 
                 if (keyInfo.Key == ConsoleKey.LeftArrow)
                 {
-                    targetColumn = playerCol - 1;
+                    targetColumn = player.x - 1;
                 }
                 else if (keyInfo.Key == ConsoleKey.RightArrow)
                 {
-                    targetColumn = playerCol + 1;
+                    targetColumn = player.x + 1;
                 }
                 else if (keyInfo.Key == ConsoleKey.UpArrow)
                 {
-                    targetRow = playerRow - 1;
+                    targetRow = player.y - 1;
                 }
                 else if (keyInfo.Key == ConsoleKey.DownArrow)
                 {
-                    targetRow = playerRow + 1;
+                    targetRow = player.y + 1;
                 }
                 else
                 {
@@ -145,14 +145,14 @@ namespace Game_in_Csharp
                 }
 
                 // sprawdzenie czy gracz nie wychodzi poza mapę
-                if (targetColumn >= 0 && targetColumn < level[playerRow].Length && level[playerRow][targetColumn] != '#')
+                if (targetColumn >= 0 && targetColumn < level[player.y].Length && level[player.y][targetColumn] != '#')
                 {
-                    playerCol = targetColumn;
+                    player.x = targetColumn;
                 }
 
-                if (targetRow >= 0 && targetRow < level.Length && level[targetRow][playerCol] != '#')
+                if (targetRow >= 0 && targetRow < level.Length && level[targetRow][player.x] != '#')
                 {
-                    playerRow = targetRow;
+                    player.y = targetRow;
                 }
             }
 
