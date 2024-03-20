@@ -128,12 +128,12 @@ namespace Game_in_Csharp
                     break;
                 }
 
-                if (playerCol >= 0 && targetColumn < level[playerRow].Length)
+                if (playerCol >= 0 && targetColumn < level[playerRow].Length && level[playerRow][targetColumn] != '#')
                 {
                     playerCol = targetColumn;
                 }
 
-                if (playerRow >= 0 && targetRow < level.Length)
+                if (playerRow >= 0 && targetRow < level.Length && level[targetRow][playerCol] != '#')
                 {
                     playerRow = targetRow;
                 }
