@@ -19,7 +19,7 @@ namespace _10._03._2024_firstapp
                 Console.WriteLine("Ha! I knew it!");
             }
 
-            Console.WriteLine("Where are you from " + name + "?");
+            Console.WriteLine($"Where are you from {name}?");
             string place = Console.ReadLine();
 
             if (string.IsNullOrWhiteSpace(place))
