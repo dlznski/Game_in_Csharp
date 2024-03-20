@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace _10._03._2024_firstapp
+namespace Game_in_Csharp
 {
     class Program
     {
@@ -43,7 +43,7 @@ namespace _10._03._2024_firstapp
                 "#   ###    #",
                 "#   #      #",
                 "#   #      #",
-                "#   ###    #", 
+                "#   ###    #",
                 "#          #",
                 "############"
             };
@@ -104,21 +104,34 @@ namespace _10._03._2024_firstapp
                 char currentCell = currentRow[playerCol];
                 Console.Write(currentCell);
 
+                int targetColumn = playerCol;
+                int targetRow = playerRow;
+
                 if (keyInfo.Key == ConsoleKey.LeftArrow)
                 {
-                    playerCol--;
+                    targetColumn = playerCol - 1;
                 }
                 else if (keyInfo.Key == ConsoleKey.RightArrow)
                 {
-                    playerCol++;
+                    targetColumn = playerCol + 1;
                 }
                 else if (keyInfo.Key == ConsoleKey.UpArrow)
                 {
-                    playerRow--;
+                    targetRow = playerRow - 1;
                 }
                 else if (keyInfo.Key == ConsoleKey.DownArrow)
                 {
-                    playerRow++;
+                    targetRow = playerRow + 1;
+                }
+
+                if (playerCol >= 0 && targetColumn < level[playerRow].Length)
+                {
+                    playerCol = targetColumn;
+                }
+
+                if (playerRow >= 0 && targetRow < level.Length)
+                {
+                    playerRow = targetRow;
                 }
             }
 
