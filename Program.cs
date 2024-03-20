@@ -123,6 +123,10 @@ namespace Game_in_Csharp
                 {
                     targetRow = playerRow + 1;
                 }
+                else
+                {
+                    break;
+                }
 
                 if (playerCol >= 0 && targetColumn < level[playerRow].Length)
                 {
