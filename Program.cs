@@ -89,11 +89,34 @@ namespace _10._03._2024_firstapp
                 Console.WriteLine(row);
             }
 
-            Console.SetCursorPosition(2, 3);
-            Console.Write("@");
+            int playerRow = 3;
+            int playerCol = 2;
+
+            while (true)
+            {
+                Console.SetCursorPosition(playerCol, playerRow);
+                Console.Write("@");
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+
+                if (keyInfo.Key == ConsoleKey.LeftArrow)
+                {
+                    playerCol--;
+                }
+                else if (keyInfo.Key == ConsoleKey.RightArrow)
+                {
+                    playerCol++;
+                }
+                else if (keyInfo.Key == ConsoleKey.UpArrow)
+                {
+                    playerRow--;
+                }
+                else if (keyInfo.Key == ConsoleKey.DownArrow)
+                {
+                    playerRow++;
+                }
+            }
 
             Console.SetCursorPosition(0, level.Length);
-
 
             /*
             ############
