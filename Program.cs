@@ -83,6 +83,12 @@ namespace _10._03._2024_firstapp
                 Console.ReadKey(true);
             }
 
+            Console.Clear();
+            foreach (string row in level)
+            {
+                Console.WriteLine(row);
+            }
+
             /*
             ############
             #     #    #
