@@ -96,7 +96,13 @@ namespace _10._03._2024_firstapp
             {
                 Console.SetCursorPosition(playerCol, playerRow);
                 Console.Write("@");
+
                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+
+                Console.SetCursorPosition(playerCol, playerRow);
+                string currentRow = level[playerRow];
+                char currentCell = currentRow[playerCol];
+                Console.Write(currentCell);
 
                 if (keyInfo.Key == ConsoleKey.LeftArrow)
                 {
