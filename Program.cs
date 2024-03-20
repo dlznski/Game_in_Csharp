@@ -9,6 +9,7 @@ namespace Game_in_Csharp
             Console.WriteLine("Who are you, Stranger?");
             string name = Console.ReadLine();
 
+            // sprawdzenie czy gracz podał swoje imię
             if (string.IsNullOrWhiteSpace(name))
             {
                 Console.WriteLine("I will still call you Stranger, then.");
@@ -19,9 +20,11 @@ namespace Game_in_Csharp
                 Console.WriteLine("Ha! I knew it!");
             }
 
+            // zapytanie o miejsce pochodzenia gracza
             Console.WriteLine($"Where are you from {name}?");
             string place = Console.ReadLine();
 
+            // sprawdzenie czy gracz podał swoje miejsce pochodzenia
             if (string.IsNullOrWhiteSpace(place))
             {
                 Console.WriteLine("You are not to talkative, are you?");
@@ -31,10 +34,12 @@ namespace Game_in_Csharp
             {
                 Console.WriteLine("Oh! Exacly what I guessed!");
             }
+
             Console.WriteLine($"Welcome to Game {name} from {place}!");
             Console.WriteLine("Press any key to continue..");
             Console.ReadKey(true);
 
+            // tablica z mapą
             string[] level =
              {
                 "############",
@@ -48,6 +53,7 @@ namespace Game_in_Csharp
                 "############"
             };
 
+            //tablica z pergaminem na którym wyświetlana jest mapa
             string[] scroll =
             {
                  "      _______________",
@@ -61,14 +67,18 @@ namespace Game_in_Csharp
             };
 
             Console.Clear();
+            Console.WriteLine("Before you start your journey, you need to know where you are going.");
+            Console.WriteLine("Here's a map of the area you are about to explore. You can move around using the arrow keys.");
             Console.WriteLine("Wanna see the map? Press any key until it is revealed...");
 
+            // wyświetlenie połowy pergaminu
             int scrollHalf = scroll.Length / 2;
             for (int i = 0; i < scrollHalf; i++)
             {
                 Console.WriteLine(scroll[i]);
             }
 
+            // wyświetlenie mapy na pergaminie
             int nextMapRowPosition = Console.CursorTop;
             foreach (string row in level)
             {
@@ -83,6 +93,7 @@ namespace Game_in_Csharp
                 Console.ReadKey(true);
             }
 
+            // wyświetlenie drugiej połowy pergaminu
             Console.Clear();
             foreach (string row in level)
             {
@@ -92,20 +103,25 @@ namespace Game_in_Csharp
             int playerRow = 3;
             int playerCol = 2;
 
+            // funckja poruszanienia gracza po mapie
             while (true)
             {
-                Console.SetCursorPosition(playerCol, playerRow);
-                Console.Write("@");
+                // wyświetlenie gracza na mapie
+                WriteAt(playerCol, playerRow, "@");
 
+                // odczytanie klawisza
                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
 
-                Console.SetCursorPosition(playerCol, playerRow);
+                // usunięcie gracza z poprzedniej pozycji
                 string currentRow = level[playerRow];
                 char currentCell = currentRow[playerCol];
-                Console.Write(currentCell);
+                WriteAt(playerCol, playerRow, currentCell);
 
+                // zmienna przechowująca nową pozycję gracza
                 int targetColumn = playerCol;
                 int targetRow = playerRow;
+
+                // przypisanie klawiszy odpowiedzialnych za poruszanie się gracza oraz aktualizacja jego pozycji
 
                 if (keyInfo.Key == ConsoleKey.LeftArrow)
                 {
@@ -128,12 +144,13 @@ namespace Game_in_Csharp
                     break;
                 }
 
-                if (playerCol >= 0 && targetColumn < level[playerRow].Length && level[playerRow][targetColumn] != '#')
+                // sprawdzenie czy gracz nie wychodzi poza mapę
+                if (targetColumn >= 0 && targetColumn < level[playerRow].Length && level[playerRow][targetColumn] != '#')
                 {
                     playerCol = targetColumn;
                 }
 
-                if (playerRow >= 0 && targetRow < level.Length && level[targetRow][playerCol] != '#')
+                if (targetRow >= 0 && targetRow < level.Length && level[targetRow][playerCol] != '#')
                 {
                     playerRow = targetRow;
                 }
@@ -164,6 +181,18 @@ namespace Game_in_Csharp
     ()==(               (@==()
          '--------------'
              */
+        }
+
+        static void WriteAt(int Col, int Row, string text)
+        {
+            Console.SetCursorPosition(Col, Row);
+            Console.Write(text);
+        }
+
+        static void WriteAt(int Col, int Row, char sign)
+        {
+            Console.SetCursorPosition(Col, Row);
+            Console.Write(sign);
         }
     }
 }
