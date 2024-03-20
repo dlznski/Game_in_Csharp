@@ -107,7 +107,7 @@ namespace Game_in_Csharp
             while (true)
             {
                 // wyświetlenie gracza na mapie
-                WriteAt(playerCol, playerRow, "@");
+                Display.WriteAt(playerCol, playerRow, "@");
 
                 // odczytanie klawisza
                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
@@ -115,7 +115,7 @@ namespace Game_in_Csharp
                 // usunięcie gracza z poprzedniej pozycji
                 string currentRow = level[playerRow];
                 char currentCell = currentRow[playerCol];
-                WriteAt(playerCol, playerRow, currentCell);
+                Display.WriteAt(playerCol, playerRow, currentCell);
 
                 // zmienna przechowująca nową pozycję gracza
                 int targetColumn = playerCol;
@@ -157,42 +157,6 @@ namespace Game_in_Csharp
             }
 
             Console.SetCursorPosition(0, level.Length);
-
-            /*
-            ############
-            #     #    #
-            #     #    #
-            #   ###    #
-            #   #      #
-            #   #      #
-            #   ###    #   
-            #          #
-            ############
-             */
-
-            /*
-         _______________
-    ()==(              (@==()
-         '______________'|
-           |             |
-           |             |
-           |             |
-         __)_____________|
-    ()==(               (@==()
-         '--------------'
-             */
-        }
-
-        static void WriteAt(int Col, int Row, string text)
-        {
-            Console.SetCursorPosition(Col, Row);
-            Console.Write(text);
-        }
-
-        static void WriteAt(int Col, int Row, char sign)
-        {
-            Console.SetCursorPosition(Col, Row);
-            Console.Write(sign);
         }
     }
 }
