@@ -101,7 +101,7 @@ namespace Game_in_Csharp
             }
 
 
-            Player player = new Player();
+            Player player = new Player(2,3,"@");
 
             // funckja poruszanienia gracza po mapie
             while (true)
@@ -117,43 +117,7 @@ namespace Game_in_Csharp
                 char currentCell = currentRow[player.x];
                 Display.WriteAt(player.x, player.y, currentCell);
 
-                // zmienna przechowująca nową pozycję gracza
-                int targetColumn = player.x;
-                int targetRow = player.y;
-
-                // przypisanie klawiszy odpowiedzialnych za poruszanie się gracza oraz aktualizacja jego pozycji
-
-                if (keyInfo.Key == ConsoleKey.LeftArrow)
-                {
-                    targetColumn = player.x - 1;
-                }
-                else if (keyInfo.Key == ConsoleKey.RightArrow)
-                {
-                    targetColumn = player.x + 1;
-                }
-                else if (keyInfo.Key == ConsoleKey.UpArrow)
-                {
-                    targetRow = player.y - 1;
-                }
-                else if (keyInfo.Key == ConsoleKey.DownArrow)
-                {
-                    targetRow = player.y + 1;
-                }
-                else
-                {
-                    break;
-                }
-
-                // sprawdzenie czy gracz nie wychodzi poza mapę
-                if (targetColumn >= 0 && targetColumn < level[player.y].Length && level[player.y][targetColumn] != '#')
-                {
-                    player.x = targetColumn;
-                }
-
-                if (targetRow >= 0 && targetRow < level.Length && level[targetRow][player.x] != '#')
-                {
-                    player.y = targetRow;
-                }
+                player.Move(keyInfo, level);
             }
 
             Console.SetCursorPosition(0, level.Length);
