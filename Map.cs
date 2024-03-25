@@ -8,11 +8,11 @@ namespace Game_in_Csharp
         public static string[] level =
          {
                 "############",
-                "#     #    #",
+                "#    c#    #",
                 "#     #    #",
                 "#   ###    #",
                 "#   #      #",
-                "#   #      #",
+                "#   #k     #",
                 "#   ###    #",
                 "#          #",
                 "############"
@@ -63,5 +63,6 @@ namespace Game_in_Csharp
                 Console.WriteLine(row);
             }
         }
+
     }
 }

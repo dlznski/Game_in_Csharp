@@ -1,10 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace Game_in_Csharp
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.WriteLine("Who are you, Stranger?");
             string name = Console.ReadLine();
@@ -41,7 +42,7 @@ namespace Game_in_Csharp
 
             Console.Clear();
             Console.WriteLine("Before you start your journey, you need to know where you are going.");
-            Console.WriteLine("Here's a map of the area you are about to explore. You can move around using the arrow keys.");
+            Console.WriteLine("Here's a map of the area you are about to explore. You can move around using the arrow keys. Your mission is to find the key to the treasure chest");
             Console.WriteLine("Wanna see the map? Press any key until it is revealed...");
 
             string[] level = Map.level;
@@ -50,22 +51,24 @@ namespace Game_in_Csharp
 
             Player player = new Player(2,3,"@");
 
-            // funckja poruszanienia gracza po mapie
             while (true)
             {
-                // wyświetlenie gracza na mapie
                 Display.WriteAt(player.x, player.y, player.avatar);
 
-                // odczytanie klawisza
                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
 
-                // usunięcie gracza z poprzedniej pozycji
                 string currentRow = level[player.y];
                 char currentCell = currentRow[player.x];
                 Display.WriteAt(player.x, player.y, currentCell);
 
                 player.Move(keyInfo, level);
+
                 if (keyInfo.Key == ConsoleKey.Escape)
+                {
+                    break;
+                }
+
+                if (player.CheckWinRules())
                 {
                     break;
                 }

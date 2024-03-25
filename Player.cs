@@ -7,6 +7,8 @@ namespace Game_in_Csharp
         public int x = 2;
         public int y = 3;
         public string avatar = "@";
+        public bool key = false;
+        public bool win = false;
 
         public Player(int x, int y, string avatar)
         {
@@ -45,8 +47,42 @@ namespace Game_in_Csharp
 
             if (targetRow >= 0 && targetRow < level.Length && level[targetRow][x] != '#')
             {
-               y = targetRow;
+                y = targetRow;
             }
+        }
+
+        private void UpdateLevel(int x, int y, char symbol)
+        {
+            string updatedRow = Map.level[y].Substring(0, x) + symbol + Map.level[y].Substring(x + 1);
+            Map.level[y] = updatedRow;
+            Display.WriteAt(x, y, symbol);
+            Console.SetCursorPosition(0, Map.level.Length + 1);
+        }
+
+        public bool CheckWinRules()
+        {
+            if (Map.level[y][x] == 'k')
+            {
+                key = true;
+                UpdateLevel(y, x, ' ');
+                Console.WriteLine("Congratulations! You found key! I wonder what it opens ");
+                Console.ReadKey(true);
+                Console.SetCursorPosition(0, Map.level.Length + 1);
+                Display.ClearCurrentConsoleLine();
+                return false;
+            }
+
+            if (Map.level[y][x] == 'c' && key == true)
+            {
+                win = true;
+                UpdateLevel(y, x, ' ');
+                Console.WriteLine("Congratulations! You have found the treasure!");
+                Console.SetCursorPosition(0, Map.level.Length + 1);
+                Console.ReadKey(true);
+                return true;
+            }
+
+            return false;
         }
     }
 }
