@@ -39,67 +39,14 @@ namespace Game_in_Csharp
             Console.WriteLine("Press any key to continue..");
             Console.ReadKey(true);
 
-            // tablica z mapą
-            string[] level =
-             {
-                "############",
-                "#     #    #",
-                "#     #    #",
-                "#   ###    #",
-                "#   #      #",
-                "#   #      #",
-                "#   ###    #",
-                "#          #",
-                "############"
-            };
-
-            //tablica z pergaminem na którym wyświetlana jest mapa
-            string[] scroll =
-            {
-                 "      _______________",
-                 "()==(               (@==()",
-                 "     '______________'|",
-                 "      |              |",
-                 "      |              |    ",
-                 "     _|______________|    ",
-                 "()==(               (@==()",
-                 "     '--------------'     "
-            };
-
             Console.Clear();
             Console.WriteLine("Before you start your journey, you need to know where you are going.");
             Console.WriteLine("Here's a map of the area you are about to explore. You can move around using the arrow keys.");
             Console.WriteLine("Wanna see the map? Press any key until it is revealed...");
 
-            // wyświetlenie połowy pergaminu
-            int scrollHalf = scroll.Length / 2;
-            for (int i = 0; i < scrollHalf; i++)
-            {
-                Console.WriteLine(scroll[i]);
-            }
-
-            // wyświetlenie mapy na pergaminie
-            int nextMapRowPosition = Console.CursorTop;
-            foreach (string row in level)
-            {
-                Console.SetCursorPosition(0, nextMapRowPosition);
-                Console.WriteLine($"      | {row} |");
-
-                for (int i = scrollHalf; i < scroll.Length; i++)
-                {
-                    Console.WriteLine(scroll[i]);
-                }
-                nextMapRowPosition++;
-                Console.ReadKey(true);
-            }
-
-            // wyświetlenie drugiej połowy pergaminu
-            Console.Clear();
-            foreach (string row in level)
-            {
-                Console.WriteLine(row);
-            }
-
+            string[] level = Map.level;
+            string[] scroll = Map.scroll;
+            Map.DrawMap();
 
             Player player = new Player(2,3,"@");
 
@@ -118,6 +65,10 @@ namespace Game_in_Csharp
                 Display.WriteAt(player.x, player.y, currentCell);
 
                 player.Move(keyInfo, level);
+                if (keyInfo.Key == ConsoleKey.Escape)
+                {
+                    break;
+                }
             }
 
             Console.SetCursorPosition(0, level.Length);

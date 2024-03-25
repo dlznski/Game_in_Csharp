@@ -37,6 +37,7 @@ namespace Game_in_Csharp
                 default:
                     return;
             }
+
             if (targetColumn >= 0 && targetColumn < level[y].Length && level[y][targetColumn] != '#')
             {
                 x = targetColumn;
