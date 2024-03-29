@@ -7,8 +7,8 @@ namespace Game_in_Csharp
         // tablica z mapą
         public static string[] level =
          {
-                "############",
-                "#    c#    #",
+                "########-###",
+                "#     #    #",
                 "#     #    #",
                 "#   ###    #",
                 "#   #      #",

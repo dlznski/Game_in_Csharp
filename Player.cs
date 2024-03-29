@@ -67,18 +67,19 @@ namespace Game_in_Csharp
                 UpdateLevel(y, x, ' ');
                 Console.WriteLine("Congratulations! You found key! I wonder what it opens ");
                 Console.ReadKey(true);
-                Console.SetCursorPosition(0, Map.level.Length + 1);
+                Console.SetCursorPosition(0, Map.level.Length +1);
                 Display.ClearCurrentConsoleLine();
                 return false;
             }
 
-            if (Map.level[y][x] == 'c' && key == true)
+            if (Map.level[y][x] == '-' && key == true)
             {
                 win = true;
                 UpdateLevel(y, x, ' ');
                 Console.WriteLine("Congratulations! You have found the treasure!");
-                Console.SetCursorPosition(0, Map.level.Length + 1);
                 Console.ReadKey(true);
+                Console.SetCursorPosition(0, Map.level.Length +1);
+                Display.ClearCurrentConsoleLine();
                 return true;
             }
 

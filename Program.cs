@@ -42,7 +42,7 @@ namespace Game_in_Csharp
 
             Console.Clear();
             Console.WriteLine("Before you start your journey, you need to know where you are going.");
-            Console.WriteLine("Here's a map of the area you are about to explore. You can move around using the arrow keys. Your mission is to find the key to the treasure chest");
+            Console.WriteLine("Here's a map of the area you are about to explore. You can move around using the arrow keys. Your mission is to find the key to the treasure chest.");
             Console.WriteLine("Wanna see the map? Press any key until it is revealed...");
 
             string[] level = Map.level;
